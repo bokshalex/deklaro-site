@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deklaro — перевір партію до митниці</title>
+  <meta name="description" content="Безкоштовна перевірка інвойсу перед митницею: суми, ваги, коди УКТ ЗЕД, країна походження, Incoterms. Усе в браузері — дані нікуди не йдуть.">
+  <meta property="og:image" content="https://bokshalex.github.io/deklaro-site/og-image.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <!-- TODO: аналітика GoatCounter (без cookies) — додати після реєстрації домену; згадати в privacy.html -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Deklaro — на головну">
+        <img class="logo-mark" src="favicon.svg" alt="" width="32" height="32">
+        Deklaro
+      </a>
+      <nav class="nav" aria-label="Основне меню">
+        <a class="nav-link" href="#how">Як це працює</a>
+        <a class="nav-link" href="#expert">Експертна перевірка</a>
+        <a class="nav-link" href="#faq">Питання</a>
+        <a class="btn btn-primary btn-sm" href="check.html">Перевірити інвойс</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Друге око перед митницею</span>
+          <h1>Перевір партію до митниці</h1>
+          <p class="lead">Встав інвойс з Excel — і за кілька секунд побачиш, чи сходяться суми й ваги, чи є коди УКТ ЗЕД і країна походження, де ризик донарахувань. Безкоштовно, без реєстрації.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="check.html">Перевірити інвойс безкоштовно</a>
+            <a class="btn btn-secondary" href="#expert">Експертна перевірка — 499 грн</a>
+          </div>
+          <div class="trust">
+            <span class="pill">Дані не йдуть на сервер</span>
+            <span class="pill">Без реєстрації</span>
+            <span class="pill">Для малих імпортерів і брокерів</span>
+          </div>
+        </div>
+
+        <div class="preview" aria-label="Приклад результату перевірки">
+          <span class="stamp preview-tag">Приклад звіту</span>
+          <div class="card">
+            <div class="preview-head">
+              <strong>Інвойс · 7 позицій</strong>
+              <span class="cnt cnt-error">4 помилки</span>
+            </div>
+            <div class="issue-mini"><span class="cnt cnt-error" aria-label="Помилка">!</span><span>Рядок 2: 300 × 8,50 = 2 550,00, а в інвойсі 2 650,00</span></div>
+            <div class="issue-mini"><span class="cnt cnt-error" aria-label="Помилка">!</span><span>Рядок 3: нетто більше за брутто</span></div>
+            <div class="issue-mini"><span class="cnt cnt-warn" aria-label="Увага">?</span><span>Рядок 3: код «8708 99» — потрібно 10 цифр УКТ ЗЕД</span></div>
+            <div class="issue-mini"><span class="cnt cnt-warn" aria-label="Увага">?</span><span>Рядок 5: ціна в 6 разів нижча, ніж у схожих позицій — ризик коригування митної вартості</span></div>
+            <div class="issue-mini"><span class="cnt cnt-info" aria-label="Підказка">i</span><span>Туреччина: можлива пільга, якщо є доказ походження</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="how">
+      <div class="wrap">
+        <span class="eyebrow">Як це працює</span>
+        <h2>Три кроки — і ти знаєш свої ризики</h2>
+        <div class="grid grid-3" style="margin-top:24px">
+          <div class="card">
+            <span class="step-num">1</span>
+            <h3>Встав інвойс</h3>
+            <p class="muted">Скопіюй таблицю з Excel разом із заголовками або завантаж CSV. Колонки впізнаємо самі — українською, російською чи англійською.</p>
+          </div>
+          <div class="card">
+            <span class="step-num">2</span>
+            <h3>Додай кілька цифр</h3>
+            <p class="muted">Загальна сума, валюта, Incoterms, ваги з пакувального листа. Якщо хочеш оцінку платежів — курс і ставку мита.</p>
+          </div>
+          <div class="card">
+            <span class="step-num">3</span>
+            <h3>Виправ до відправки брокеру</h3>
+            <p class="muted">Отримаєш список проблем з поясненнями, підсвічені рядки, звіт для постачальника і CSV з колонками в правильному порядку.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="checker">
+      <div class="wrap">
+        <div class="grid grid-2" style="align-items:center">
+          <div>
+            <span class="eyebrow">Безкоштовна перевірка</span>
+            <h2>Що перевіряємо в інвойсі</h2>
+            <ul class="checklist">
+              <li>Кількість × ціна = сума в кожному рядку</li>
+              <li>Сума позицій = загальна сума інвойсу</li>
+              <li>Нетто не більше брутто, ваги сходяться з пакувальним листом</li>
+              <li>Код УКТ ЗЕД — повні 10 цифр</li>
+              <li>Країна походження заповнена; підказка про можливу пільгу за угодами про вільну торгівлю</li>
+              <li>Дублі й надто загальні описи («товар», «запчастини»)</li>
+              <li>Підозріло дешеві позиції — ризик коригування митної вартості</li>
+              <li>Incoterms і що додати до митної вартості</li>
+              <li>Орієнтовні мито і ПДВ за ставкою, яку вводиш ти</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Твої дані лишаються в тебе</h3>
+            <p class="muted">Перевірка працює прямо в браузері. Інвойс не завантажується на наш сервер — ми його просто не бачимо. Можеш навіть вимкнути інтернет після відкриття сторінки.</p>
+            <a class="btn btn-primary" href="check.html">Відкрити перевірку</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="expert">
+      <div class="wrap">
+        <div class="card offer">
+          <div>
+            <span class="stamp">Для імпортерів</span>
+            <h2 style="margin-top:12px">Експертна перевірка партії за 24 год</h2>
+            <p class="muted">Автоперевірка ловить арифметику. Людина з досвідом подивиться глибше: весь пакет документів, опис і коди товарів, ризики митної вартості й походження. Відповімо листом зі списком того, що варто виправити до подачі.</p>
+            <ul class="checklist">
+              <li>Інвойс, пакувальний лист, контракт, сертифікати походження</li>
+              <li>Коментарі до кодів УКТ ЗЕД і описів</li>
+              <li>Що попросити в постачальника, щоб не було донарахувань</li>
+            </ul>
+            <p class="small muted">Документи видаляємо через 30 днів після перевірки. Ми не подаємо декларацію і не замінюємо брокера.</p>
+          </div>
+          <div>
+            <div class="price">499 <small>грн за партію</small></div>
+            <p class="muted small">Відповідь протягом 24 годин у робочі дні.</p>
+            <!-- TODO: replace with Tally/Google Form once founder creates it -->
+            <a class="btn btn-amber" style="width:100%" href="mailto:hello@deklaro.app?subject=%D0%95%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%D0%BD%D0%B0%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D0%BA%D0%B0%20%D0%BF%D0%B0%D1%80%D1%82%D1%96%D1%97%20%E2%80%94%20499%20%D0%B3%D1%80%D0%BD&amp;body=%D0%9F%D1%80%D0%B8%D0%B2%D1%96%D1%82!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B5%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%D0%BD%D1%83%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D1%96%D1%80%D0%BA%D1%83%20%D0%BF%D0%B0%D1%80%D1%82%D1%96%D1%97%20%D0%B7%D0%B0%2024%20%D0%B3%D0%BE%D0%B4.%0A%0A%D0%A9%D0%BE%20%D0%B2%D0%B5%D0%B7%D1%83%3A%0A%D0%97%D0%B2%D1%96%D0%B4%D0%BA%D0%B8%20(%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%20%D0%B2%D1%96%D0%B4%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F)%3A%0A%D0%A1%D0%BA%D1%96%D0%BB%D1%8C%D0%BA%D0%B8%20%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D1%96%D0%B9%20%D0%B2%20%D1%96%D0%BD%D0%B2%D0%BE%D0%B9%D1%81%D1%96%3A%0A%D0%9A%D0%BE%D0%BB%D0%B8%20%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D1%80%D0%B4%D0%BE%D0%BD%D1%96%3A%0A%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%20%D0%B0%D0%B1%D0%BE%20Telegram%3A%0A%0A%D0%86%D0%BD%D0%B2%D0%BE%D0%B9%D1%81%20%D1%96%20%D0%BF%D0%B0%D0%BA%D1%83%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9%20%D0%BB%D0%B8%D1%81%D1%82%20%D0%B4%D0%BE%D0%B4%D0%B0%D0%BC%20%D1%83%20%D0%B2%D1%96%D0%B4%D0%BF%D0%BE%D0%B2%D1%96%D0%B4%D1%8C%20%D0%BD%D0%B0%20%D1%82%D0%B2%D1%96%D0%B9%20%D0%BB%D0%B8%D1%81%D1%82.">Замовити перевірку</a>
+            <p class="small muted" style="margin-top:10px">Відкриється лист на hello@deklaro.app — допиши кілька рядків і додай файли.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="brokers">
+      <div class="wrap">
+        <div class="grid grid-2" style="align-items:center">
+          <div>
+            <span class="eyebrow">Для брокерів і декларантів</span>
+            <h2>Автоперенесення інвойсу в MD Office / QD</h2>
+            <p class="muted">Готуємо інструмент, що перетворює інвойс постачальника на чисту таблицю для імпорту в програму декларування: без ручного набору сотень позицій і з перевіркою помилок до подачі.</p>
+          </div>
+          <div class="card">
+            <h3>Лист очікування</h3>
+            <p class="muted">Напиши, якою програмою користуєшся і скільки декларацій робиш на місяць. Покличемо на демо, щойно буде готово.</p>
+            <!-- TODO: replace with Tally/Google Form once founder creates it -->
+            <a class="btn btn-primary" href="mailto:hello@deklaro.app?subject=%D0%9B%D0%B8%D1%81%D1%82%20%D0%BE%D1%87%D1%96%D0%BA%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%3A%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BF%D0%B5%D1%80%D0%B5%D0%BD%D0%B5%D1%81%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%B2%20MD%20Office%20%2F%20QD&amp;body=%D0%9F%D1%80%D0%B8%D0%B2%D1%96%D1%82!%20%D0%AF%20%D0%B1%D1%80%D0%BE%D0%BA%D0%B5%D1%80%20%2F%20%D0%B4%D0%B5%D0%BA%D0%BB%D0%B0%D1%80%D0%B0%D0%BD%D1%82.%0A%0A%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0%3A%20MD%20Office%20%2F%20QD%20%2F%20%D1%96%D0%BD%D1%88%D0%B0%3A%0A%D0%94%D0%B5%D0%BA%D0%BB%D0%B0%D1%80%D0%B0%D1%86%D1%96%D0%B9%20%D0%BD%D0%B0%20%D0%BC%D1%96%D1%81%D1%8F%D1%86%D1%8C%3A%0A%D0%A1%D0%BA%D1%96%D0%BB%D1%8C%D0%BA%D0%B8%20%D0%BB%D1%8E%D0%B4%D0%B5%D0%B9%20%D1%83%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%96%3A%0A%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%20%D0%B0%D0%B1%D0%BE%20Telegram%3A%0A%0A%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%20%D0%B4%D0%B5%D0%BC%D0%BE%2C%20%D0%BA%D0%BE%D0%BB%D0%B8%20%D0%B1%D1%83%D0%B4%D0%B5%20%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BE.">Записатися в лист очікування</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="wrap">
+        <span class="eyebrow">Питання</span>
+        <h2>Часті питання</h2>
+        <div class="faq" style="margin-top:20px">
+          <details>
+            <summary>Deklaro замінює митного брокера?</summary>
+            <div>Ні. Ми не подаємо декларації й не представляємо тебе на митниці. Deklaro — друге око: допомагає знайти помилки в документах до того, як ти передаси їх брокеру.</div>
+          </details>
+          <details>
+            <summary>Мій інвойс потрапляє на ваш сервер?</summary>
+            <div>Ні. Безкоштовна перевірка працює повністю в твоєму браузері. Таблиця не надсилається нікуди, ми її не бачимо і не зберігаємо. Для експертної перевірки ти сам надсилаєш документи листом — їх видаляємо через 30 днів.</div>
+          </details>
+          <details>
+            <summary>Результат перевірки — це митне рішення?</summary>
+            <div>Ні, це підказка. Остаточно код, митну вартість і платежі визначає митниця. Розрахунок платежів орієнтовний: без акцизу та інших платежів, за ставкою мита, яку вводиш ти. Завжди перевіряй у брокера.</div>
+          </details>
+          <details>
+            <summary>Скільки це коштує?</summary>
+            <div>Автоматична перевірка в браузері — безкоштовно. Експертна перевірка партії людиною за 24 години — 499 грн. Для брокерів готуємо окремий тариф; запишись у лист очікування.</div>
+          </details>
+          <details>
+            <summary>Що змінилося для товарів з Туреччини?</summary>
+            <div>З 01.10.2026 діє угода про вільну торгівлю між Україною й Туреччиною. Пільгу за нею можна отримати, лише якщо товар справді турецького походження і є доказ походження (наприклад, EUR.1 або декларація походження в інвойсі). Перевірка підсвітить такі позиції й нагадає про доказ. Конкретні ставки й правила уточнюй у першоджерелах і в брокера.</div>
+          </details>
+          <details>
+            <summary>Які файли підходять?</summary>
+            <div>Таблиця, скопійована з Excel або Google Таблиць, або файл CSV. Перший рядок — заголовки колонок: опис, код, країна, кількість, ціна, сума, нетто, брутто. PDF поки не читаємо.</div>
+          </details>
+          <details>
+            <summary>Хто ви?</summary>
+            <div>Deklaro — невелика українська команда, яка робить імпорт зрозумілішим для малого бізнесу. Ми на старті: зараз перевіряємо, чи корисний такий сервіс. Пиши на <a href="mailto:hello@deklaro.app">hello@deklaro.app</a> — читаємо кожен лист.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Deklaro не є митним брокером і не представляє Держмитслужбу; результати — підказки, не митне рішення.</p>
+      <div class="footer-links">
+        <a href="check.html">Перевірка інвойсу</a>
+        <a href="privacy.html">Політика конфіденційності</a>
+        <a href="terms.html">Умови користування</a>
+        <a href="mailto:hello@deklaro.app">hello@deklaro.app</a>
+      </div>
+      <p class="small">© 2026 Deklaro</p>
+    </div>
+  </footer>
+</body>
+</html>

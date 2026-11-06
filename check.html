@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Перевірка інвойсу — Deklaro</title>
+  <meta name="description" content="Безкоштовна перевірка інвойсу перед митницею прямо в браузері. Дані нікуди не надсилаються.">
+  <meta property="og:image" content="https://bokshalex.github.io/deklaro-site/og-image.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <!-- TODO: аналітика GoatCounter (лише факт запуску перевірки, без вмісту таблиці) -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Deklaro — на головну">
+        <img class="logo-mark" src="favicon.svg" alt="" width="32" height="32">
+        Deklaro
+      </a>
+      <nav class="nav" aria-label="Основне меню">
+        <a class="nav-link" href="index.html#how">Як це працює</a>
+        <a class="nav-link" href="index.html#faq">Питання</a>
+        <a class="btn btn-secondary btn-sm" href="index.html#expert">Експертна перевірка</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="check-head">
+      <h1 style="font-size:clamp(1.75rem,4vw,2.5rem)">Перевірка інвойсу</h1>
+      <p class="lead">Встав таблицю з Excel або завантаж CSV, додай кілька цифр із документів — і побачиш, що варто виправити до подачі.</p>
+      <p class="privacy-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span><strong>Нічого не надсилається.</strong> Перевірка працює лише у твоєму браузері: таблиця не йде на сервер, ми її не бачимо і не зберігаємо.</span>
+      </p>
+    </section>
+
+    <form id="checkForm" class="check-layout" style="margin-top:24px" novalidate>
+      <div class="card">
+        <label for="invoice">Таблиця інвойсу <span class="hint">— разом із рядком заголовків</span></label>
+        <div class="toolbar">
+          <button type="button" class="btn btn-secondary btn-sm" id="demoBtn">Приклад</button>
+          <span class="btn btn-secondary btn-sm file-btn">Завантажити CSV<input type="file" id="fileInput" accept=".csv,.tsv,.txt,text/csv,text/plain" aria-label="Завантажити CSV-файл"></span>
+          <button type="button" class="btn btn-ghost btn-sm" id="clearBtn">Очистити</button>
+        </div>
+        <textarea id="invoice" name="invoice" spellcheck="false" placeholder="Опис&#9;Код УКТ ЗЕД&#9;Країна походження&#9;К-сть&#9;Ціна&#9;Сума&#9;Нетто&#9;Брутто&#10;Навушники бездротові…&#9;8518300090&#9;Китай&#9;500&#9;6,20&#9;3 100,00&#9;40&#9;46,5"></textarea>
+        <p class="small muted" style="margin:8px 0 0">Колонки впізнаємо за назвами: опис / назва / description, код / УКТ ЗЕД / HS, країна / origin, к-сть / qty, ціна / price, сума / amount, нетто / net, брутто / gross, валюта, мито %.</p>
+      </div>
+
+      <div class="card">
+        <fieldset>
+          <legend>Дані з документів</legend>
+          <div class="fields">
+            <div class="field">
+              <label for="invoiceTotal">Сума інвойсу</label>
+              <input id="invoiceTotal" name="invoiceTotal" inputmode="decimal" autocomplete="off" placeholder="7 942,00">
+            </div>
+            <div class="field">
+              <label for="currency">Валюта</label>
+              <select id="currency" name="currency">
+                <option value="USD">USD</option><option value="EUR">EUR</option><option value="CNY">CNY</option>
+                <option value="TRY">TRY</option><option value="PLN">PLN</option><option value="GBP">GBP</option><option value="UAH">UAH</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="incoterms">Incoterms</label>
+              <select id="incoterms" name="incoterms">
+                <option value="">— не вказано —</option>
+                <option>EXW</option><option>FCA</option><option>FOB</option><option>CFR</option><option>CIF</option>
+                <option>CPT</option><option>CIP</option><option>DAP</option><option>DPU</option><option>DDP</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="dispatchCountry">Країна відправлення</label>
+              <input id="dispatchCountry" name="dispatchCountry" autocomplete="off" placeholder="Китай">
+            </div>
+            <div class="field">
+              <label for="packingGross">Брутто, кг <span class="hint">пак. лист</span></label>
+              <input id="packingGross" name="packingGross" inputmode="decimal" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="packingNet">Нетто, кг <span class="hint">пак. лист</span></label>
+              <input id="packingNet" name="packingNet" inputmode="decimal" autocomplete="off">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Оцінка платежів <span class="hint">(необовʼязково)</span></legend>
+          <div class="fields">
+            <div class="field">
+              <label for="freight">Доставка до кордону</label>
+              <input id="freight" name="freight" inputmode="decimal" autocomplete="off" placeholder="у валюті інвойсу">
+            </div>
+            <div class="field">
+              <label for="insurance">Страхування</label>
+              <input id="insurance" name="insurance" inputmode="decimal" autocomplete="off" placeholder="у валюті інвойсу">
+            </div>
+            <div class="field">
+              <label for="rate">Курс, грн за 1 <span id="rateCur">USD</span></label>
+              <input id="rate" name="rate" inputmode="decimal" autocomplete="off" placeholder="курс НБУ на дату">
+            </div>
+            <div class="field">
+              <label for="defaultDuty">Мито, %</label>
+              <input id="defaultDuty" name="defaultDuty" inputmode="decimal" autocomplete="off" placeholder="для всіх рядків">
+            </div>
+          </div>
+          <p class="small muted" style="margin:0 0 14px">Ставку мита дізнайся в брокера або в тарифі для свого коду. Якщо в таблиці є колонка «Мито, %», беремо ставку з неї.</p>
+        </fieldset>
+        <button type="submit" class="btn btn-primary" style="width:100%">Перевірити</button>
+      </div>
+    </form>
+
+    <section id="results" class="results" hidden aria-live="polite"></section>
+
+    <section class="section" style="padding-top:40px">
+      <div class="card cta-strip">
+        <div>
+          <h2 style="font-size:1.375rem;margin-bottom:4px">Хочеш, щоб подивилась людина?</h2>
+          <p class="muted" style="margin:0">Експертна перевірка всієї партії за 24 год — 499 грн.</p>
+        </div>
+        <a class="btn btn-amber" href="index.html#expert">Детальніше</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="disclaimer">Deklaro не є митним брокером і не представляє Держмитслужбу; результати — підказки, не митне рішення.</p>
+      <div class="footer-links">
+        <a href="index.html">Головна</a>
+        <a href="privacy.html">Політика конфіденційності</a>
+        <a href="terms.html">Умови користування</a>
+        <a href="mailto:hello@deklaro.app">hello@deklaro.app</a>
+      </div>
+      <p class="small">© 2026 Deklaro</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="checker-core.js"></script>
+  <script src="checker.js"></script>
+</body>
+</html>
